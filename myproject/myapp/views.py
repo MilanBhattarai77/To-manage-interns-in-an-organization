@@ -19,5 +19,29 @@ class UserViewSet(viewsets.ViewSet):
         serializer = UserProfileSerializer(user)
         return Response(serializer.data)
      
-    def create():
-        pass
+    def create(self, request):
+        queryset = UserProfile.objects.all()
+        serializer = UserProfileSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    def update(self, request, pk=None):
+        queryset = UserProfile.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserProfileSerializer(user)
+        return Response(serializer.data)
+     
+
+    def partial_update(self, request, pk=None):
+        queryset = UserProfile.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserProfileSerializer(user)
+        return Response(serializer.data)
+     
+
+    def destroy(self, request, pk=None):
+        queryset = UserProfile.objects.all()
+        user = get_object_or_404(queryset, pk=pk)
+        serializer = UserProfileSerializer(user)
+        return Response(serializer.data)
+     
+
